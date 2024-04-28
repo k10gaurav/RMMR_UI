@@ -2,9 +2,9 @@
 FROM tomcat:9-jdk11-temurin-focal
 
 ARG USER=wso2
-ARG USER_ID=10001
+ARG USER_ID=10014
 ARG USER_GROUP=wso2
-ARG USER_GROUP_ID=10001
+ARG USER_GROUP_ID=10014
 ARG USER_HOME=/usr/local/tomcat/
 
 # create a user group and a user
@@ -21,7 +21,7 @@ RUN chown -R wso2:wso2 /usr/local/tomcat/webapps/rmmr-ui
 EXPOSE 8080
 
 # set the user and work directory
-USER ${USER_ID}
+USER 10014
 
 # Start Tomcat when the container starts
 CMD ["catalina.sh", "run"]
