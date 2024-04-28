@@ -14,6 +14,7 @@ COPY rmmr-ui/ /usr/local/tomcat/webapps/rmmr-ui
 
 # Change ownership of the directory to the non-root user
 RUN chown -R ${USER}:${USER_GROUP} /usr/local/tomcat/webapps/rmmr-ui
+RUN chmod -R 777 /usr/local/tomcat
 
 # Expose the default Tomcat port
 EXPOSE 8080
