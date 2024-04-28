@@ -2,8 +2,8 @@
 FROM tomcat:9-jdk11-temurin-focal
 
 # Create a non-root user
-RUN groupadd -g 1001 myuser && \
-    useradd -r -u 1001 -g myuser myuser
+RUN groupadd -g 10001 myuser && \
+    useradd -r -u 10001 -g myuser myuser
 
 # Set the working directory
 WORKDIR /usr/local/tomcat
