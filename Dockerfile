@@ -1,9 +1,16 @@
 # Use a base image with Java and Tomcat pre-installed
 FROM tomcat:9-jdk11-temurin-focal
 
-# Create a non-root user with UID and GID between 10000 and 20000
-RUN groupadd -g 10009 myuser && \
-    useradd -r -u 10009 -g myuser myuser
+ARG USER=wso2
+ARG USER_ID=1001
+ARG USER_GROUP=wso2
+ARG USER_GROUP_ID=1001
+ARG USER_HOME=/usr/local/tomcat/
+
+# create a user group and a user
+RUN  addgroup -g ${USER_GROUP_ID} ${USER_GROUP}; \
+     adduser -u ${USER_ID} -D -g '' -h ${USER_HOME} -G ${USER_GROUP} ${USER} ;
+
 
 # Set the working directory
 WORKDIR /usr/local/tomcat
@@ -20,8 +27,8 @@ RUN chown -R myuser:myuser /usr/local/tomcat/rmmr-ui
 # Expose the default Tomcat port
 EXPOSE 8080
 
-# Switch to the non-root user
-USER myuser
+# set the user and work directory
+USER ${USER_ID}
 
 # Start Tomcat when the container starts
 CMD ["catalina.sh", "run"]
