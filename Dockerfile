@@ -21,7 +21,7 @@ RUN chown -R ${USER}:${USER_GROUP} /usr/local/tomcat/webapps/rmmr-ui
 EXPOSE 8080
 
 # set the user and work directory
-USER 10802
+ENV USER=10802
 
 # Start Tomcat when the container starts
 CMD ["catalina.sh", "run"]
