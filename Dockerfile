@@ -2,8 +2,12 @@
 FROM tomcat:9-jdk11-temurin-focal
 
 # create a user group and a user
-RUN  addgroup -g 10014 wso2; \
-     adduser -u 10014 -D -g '' -h /usr/local/tomcat/ -G wso2 wso2 ;
+#RUN  addgroup -g 10001 wso2; \
+#     adduser -u 10001 -D -g '' -h /usr/local/tomcat/ -G wso2 wso2 ;
+
+RUN groupadd -g 15000 mygroup && \
+    useradd -r -u 15000 -g mygroup myuser
+     
 
 # Copy the entire folder into the container
 COPY rmmr-ui/ /usr/local/tomcat/webapps/rmmr-ui
@@ -15,7 +19,7 @@ RUN chown -R ${USER}:${USER_GROUP} /usr/local/tomcat/webapps/rmmr-ui
 EXPOSE 8080
 
 # set the user and work directory
-USER 10014
+USER 15000
 
 # Start Tomcat when the container starts
 CMD ["catalina.sh", "run"]
