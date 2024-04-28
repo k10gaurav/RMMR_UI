@@ -156,6 +156,12 @@
             tableHTML += '<tr><th>Room ID</th><th>Attendees Count</th><th>Reason</th><th>Start Time</th><th>End Time</th><th>Resources</th><th>Booking Status</th></tr>';
             // Iterate over the rooms data and add rows to the table
             roomsResponse.forEach(function(room) {
+              if(room.booking_status=="not_booked"){
+                booking_status="Initiated";
+              }
+              else{
+                booking_status=room.booking_status;
+              }
               tableHTML += '<tr>';
               tableHTML += '<td>' + room.room_id + '</td>';
               tableHTML += '<td>' + room.attendees + '</td>';
@@ -163,7 +169,7 @@
               tableHTML += '<td>' + room.start_time + '</td>';
               tableHTML += '<td>' + room.end_time + '</td>';
               tableHTML += '<td>' + room.resources + '</td>';
-              tableHTML += '<td>' + room.booking_status + '</td>';
+              tableHTML += '<td>' + booking_status + '</td>';
               tableHTML += '</tr>';
             });
             tableHTML += '</table>';
