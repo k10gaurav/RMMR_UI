@@ -1,9 +1,9 @@
 # Use a base image with Java and Tomcat pre-installed
 FROM tomcat:9-jdk11-temurin-focal
 
-# Create a non-root user
-RUN groupadd -g 10001 myuser && \
-    useradd -r -u 10001 -g myuser myuser
+# Create a non-root user with UID and GID between 10000 and 20000
+RUN groupadd -g 10009 myuser && \
+    useradd -r -u 10009 -g myuser myuser
 
 # Set the working directory
 WORKDIR /usr/local/tomcat
