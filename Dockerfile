@@ -2,9 +2,9 @@
 FROM tomcat:9-jdk11-temurin-focal
 
 ARG USER=wso2
-ARG USER_ID=1001
+ARG USER_ID=10001
 ARG USER_GROUP=wso2
-ARG USER_GROUP_ID=1001
+ARG USER_GROUP_ID=10001
 ARG USER_HOME=/usr/local/tomcat/
 
 # create a user group and a user
